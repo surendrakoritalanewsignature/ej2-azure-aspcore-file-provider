@@ -19,8 +19,9 @@ namespace EJ2AzureASPCoreFileProvider.Controllers
         public AzureProviderController(IHostingEnvironment hostingEnvironment)
         {
             this.operation = new AzureFileProvider();
-            this.operation.RegisterAzure("<--accountName-->", "<--accountKey-->", "<--blobName-->");
-            this.operation.SetBlobContainer("<--blobPath-->", "<--filePath-->");
+            // Create a storage account in azure, modify storage name, key, 
+            this.operation.RegisterAzure("samplestorageaccount10", "HDTtipcpTx44LAKfnnWon1bhFZfZVpE6Vt5ToWihBPOgPmKOPkayd+i902eCm3V2Ms1dEi2df4JuKrrdbSoXOw==", "files");
+            this.operation.SetBlobContainer("https://samplestorageaccount10.blob.core.windows.net/files/", "https://samplestorageaccount10.blob.core.windows.net/files/Files");
             //----------
             //For example 
             //this.operation.RegisterAzure("azure_service_account", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "files");
@@ -32,8 +33,8 @@ namespace EJ2AzureASPCoreFileProvider.Controllers
         {
             if (args.Path != "")
             {
-                string startPath = "<--blobPath-->";
-                string originalPath = ("<--filePath-->").Replace(startPath, "");
+                string startPath = "https://samplestorageaccount10.blob.core.windows.net/files/";
+                string originalPath = ("https://samplestorageaccount10.blob.core.windows.net/files/Files").Replace(startPath, "");
                 //-----------------
                 //For example
                 //string startPath = "https://azure_service_account.blob.core.windows.net/files/";
@@ -46,11 +47,11 @@ namespace EJ2AzureASPCoreFileProvider.Controllers
             {
                 case "read":
                     // Reads the file(s) or folder(s) from the given path.
-                    return Json(this.ToCamelCase(this.operation.GetFiles(args.Path, args.ShowHiddenItems, args.Data)));
+                    return this.ToCamelCase(this.operation.GetFiles(args.Path, args.ShowHiddenItems, args.Data));
                 case "delete":
                     // Deletes the selected file(s) or folder(s) from the given path.
                     return this.ToCamelCase(this.operation.Delete(args.Path, args.Names, args.Data));
-                case "details":
+                case "GetDetails":
                     // Gets the details of the selected file(s) or folder(s).
                     return this.ToCamelCase(this.operation.Details(args.Path, args.Names, args.Data));
                 case "create":
@@ -88,8 +89,8 @@ namespace EJ2AzureASPCoreFileProvider.Controllers
         {
             if (args.Path != "")
             {
-                string startPath = "<--blobPath-->";
-                string originalPath = ("<--filePath-->").Replace(startPath, "");
+                string startPath = "https://samplestorageaccount10.blob.core.windows.net/files/";
+                string originalPath = ("https://samplestorageaccount10.blob.core.windows.net/files/Files").Replace(startPath, "");
                 args.Path = (originalPath + args.Path).Replace("//", "/");
                 //----------------------
                 //For example

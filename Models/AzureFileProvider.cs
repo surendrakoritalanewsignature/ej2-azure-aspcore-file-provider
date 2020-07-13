@@ -8,9 +8,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.Azure.Storage;
+using Microsoft.Azure.Storage.Auth;
+using Microsoft.Azure.Storage.Blob;
 using Syncfusion.EJ2.FileManager.Base;
 
 
@@ -483,7 +483,7 @@ namespace Syncfusion.EJ2.FileManager.AzureFileProvider
                                 existFiles.Add(fileName);
                             }
                         }
-                        else if (action == "remove")
+                        else if (action == "delete")
                         {
                             if (File.Exists(absoluteFilePath))
                             {
