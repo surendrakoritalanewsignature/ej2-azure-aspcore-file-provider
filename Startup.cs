@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,10 @@ namespace EJ2FileManagerService
                     .AllowAnyMethod()
                     .AllowAnyHeader();
                 });
+            });
+            services.Configure<FormOptions>(x =>
+            {
+                x.MultipartBodyLengthLimit = 4294967270;
             });
         }
 

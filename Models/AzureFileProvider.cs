@@ -470,18 +470,18 @@ namespace Syncfusion.EJ2.FileManager.AzureFileProvider
                         string absoluteFilePath = Path.Combine(Path.GetTempPath(), fileName);                       
                         if (action == "save")
                         {
-                            if (!File.Exists(absoluteFilePath))
-                            {
+                            //if (!File.Exists(absoluteFilePath))
+                            //{
                                 using (FileStream fs = File.Create(absoluteFilePath))
                                 {
                                     await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
                                     fs.Flush();
                                 }
-                            }
-                            else
-                            {
-                                existFiles.Add(fileName);
-                            }
+                            //}
+                            //else
+                            //{
+                            //    existFiles.Add(fileName);
+                            //}
                         }
                         else if (action == "delete")
                         {

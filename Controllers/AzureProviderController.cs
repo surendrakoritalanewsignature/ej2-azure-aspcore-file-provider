@@ -20,7 +20,7 @@ namespace EJ2AzureASPCoreFileProvider.Controllers
         {
             this.operation = new AzureFileProvider();
             // Create a storage account in azure, modify storage name, key, 
-            this.operation.RegisterAzure("samplestorageaccount10", "HDTtipcpTx44LAKfnnWon1bhFZfZVpE6Vt5ToWihBPOgPmKOPkayd+i902eCm3V2Ms1dEi2df4JuKrrdbSoXOw==", "files");
+            this.operation.RegisterAzure("samplestorageaccount10", "QMdPLhIgZGRaHh3uHmIfEnGl/Qq+QWRtisvrZkQZcVlvdU/Gn4AKBMYZ0Uj1g04qrb/fMWxX3extH3ljTBIJNw==", "files");
             this.operation.SetBlobContainer("https://samplestorageaccount10.blob.core.windows.net/files/", "https://samplestorageaccount10.blob.core.windows.net/files/Files");
             //----------
             //For example 
@@ -29,6 +29,8 @@ namespace EJ2AzureASPCoreFileProvider.Controllers
             //---------
         }
         [Route("AzureFileOperations")]
+        [RequestFormLimits(MultipartBodyLengthLimit = 4294967270)]
+        [RequestSizeLimit(4294967270)]
         public object AzureFileOperations([FromBody] FileManagerDirectoryContent args)
         {
             if (args.Path != "")
